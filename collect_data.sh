@@ -4,7 +4,7 @@
 
 #./collect_data.sh stop -> 데이터 수집을 중지함.
 
-ALL_DATA=all_data.txt
+MEM_STATISTICS=mem_statistic.txt
 
 function get_data()
 {
@@ -31,14 +31,14 @@ function print_data()
 	for ((;;))
 	do
 		get_data
-		echo "$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> collect_data.txt
+		echo "$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
 		sleep 2s	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
 	done
 }
 
 function init_document()
 {
-	echo "Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > collect_data.txt
+	echo "Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
 }
 
 init_document
