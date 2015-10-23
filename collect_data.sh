@@ -28,12 +28,12 @@ function get_data()
 
 function print_data()
 {
-		for ((;;))
-		do
-			get_data
-			echo "$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> collect_data.txt
-			sleep 1m	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
-		done
+	for ((;;))
+	do
+		get_data
+		echo "$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> collect_data.txt
+		sleep 2s	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
+	done
 }
 
 function init_document()
@@ -41,9 +41,10 @@ function init_document()
 	echo "Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > collect_data.txt
 }
 
+init_document
+
 if [ "$1" == "stop" ];then
 	pkill collect_data.sh	# 데이터 수집을 중지함
 else
-	init_document
 	print_data
 fi
