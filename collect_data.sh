@@ -4,7 +4,7 @@
 
 #./collect_data.sh stop -> 데이터 수집을 중지함.
 
-MEM_STATISTICS=mem_statistic.txt
+MEM_STATISTICS=mem_statistic.csv
 
 function get_data()
 {
