@@ -4,7 +4,7 @@
 
 #./collect_data.sh stop -> 데이터 수집을 중지함.
 
-MEM_STATISTICS=mem_statistic.csv
+MEM_STATISTICS=mem_statistics.csv
 
 function get_data()
 {
@@ -41,10 +41,31 @@ function init_document()
 	echo "Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
 }
 
-init_document
+# 1개의 프로세스만 메모리 사용량을 수집하도록 함.
+function process_check()
+{
+	PID_TXT=pid.txt
+	pgrep collect_data.sh  > $PID_TXT
+	PID_COUNT=`cat pid.txt | wc -l`
+	
+	if [ $PID_COUNT -ge 2 ]; then
+		echo "이미 프로세스가 실행 중입니다. 데이터 수집은 1개의 프로세스만 실행해야 합니다."
+			rm -rf $PID_TXT
+		exit
+	fi
+	
+	rm -rf $PID_TXT
+}
 
-if [ "$1" == "stop" ];then
-	pkill collect_data.sh	# 데이터 수집을 중지함
-else
+init_document
+process_check
+
+#echo "collect_data.sh 프로세스 개수: $PROCESS_NUM"
+#echo "collect_data.sh 프로세스 번호: `pgrep collect_data.sh`"
+#echo "`ps aux | grep collect_data.sh`"
+
+#if [ "$1" == "stop" ];then
+#	pkill collect_data.sh	# 데이터 수집을 중지함
+#else
 	print_data
-fi
+#fi
