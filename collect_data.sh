@@ -71,7 +71,7 @@ function process_check()
 
 R_check
 process_check
-init_document
+#init_document  # R에서 추가 t여부 검토
 
 #echo "collect_data.sh 프로세스 개수: $PROCESS_NUM"
 #echo "collect_data.sh 프로세스 번호: `pgrep collect_data.sh`"
