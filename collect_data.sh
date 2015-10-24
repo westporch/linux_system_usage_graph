@@ -70,8 +70,8 @@ function process_check()
 }
 
 R_check
-init_document
 process_check
+init_document
 
 #echo "collect_data.sh 프로세스 개수: $PROCESS_NUM"
 #echo "collect_data.sh 프로세스 번호: `pgrep collect_data.sh`"
