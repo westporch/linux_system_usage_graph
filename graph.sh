@@ -50,19 +50,24 @@ do
 	esac
 done
 
+# R 스크립트 시작
+
 R --quiet --no-save << EOF
 library(sqldf)
 
-#x <- switch($menu_idx, "Daily", "Weekly", "Monthly", "Yearly")
-
 draw_daily_graph <- function(YEAR, MONTH, DAY)
 {
+	print ("함수 내부입니다.")
 	print ($YEAR)
 	print ($MONTH)
 	print ($DAY)
+	mem <- read.csv('mem_statistics.csv')
+	sqldf('select * from mem')
 }
 
-draw_daily_graph()
+switch($menu_idx, draw_daily_graph(), "Weekly", "Monthly", "Yearly")
+
+#draw_daily_graph()
 
 #x <- switch($menu_idx, "daily_graph()", "Weekly", "Monthly", "Yearly")
 #print(x)
