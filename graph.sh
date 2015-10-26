@@ -51,10 +51,21 @@ do
 done
 
 R --quiet --no-save << EOF
-#library(sqldf)
+library(sqldf)
 
-x <- switch($menu_idx, "Daily", "Weekly", "Monthly", "Yearly")
-print(x)
+#x <- switch($menu_idx, "Daily", "Weekly", "Monthly", "Yearly")
+
+draw_daily_graph <- function(YEAR, MONTH, DAY)
+{
+	print ($YEAR)
+	print ($MONTH)
+	print ($DAY)
+}
+
+draw_daily_graph()
+
+#x <- switch($menu_idx, "daily_graph()", "Weekly", "Monthly", "Yearly")
+#print(x)
 
 #mem <- read.csv('mem_statistics.csv')
 #sqldf('select * from mem')
