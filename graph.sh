@@ -62,7 +62,11 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	print ($MONTH)
 	print ($DAY)
 	mem <- read.csv('mem_statistics.csv')
-	sqldf('select * from mem')
+
+	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
+	sqldf(sql_daily_graph)
+
+	#sqldf('select * from mem')
 }
 
 switch($menu_idx, draw_daily_graph(), "Weekly", "Monthly", "Yearly")
