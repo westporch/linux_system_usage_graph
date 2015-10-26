@@ -38,16 +38,24 @@ for choice in $choices
 do
 	case $choice in
 		1) echo "1이 선택됨"
-			daily ;;
-		2) echo "2" ;;
-		3) echo "3" ;;
-		4) echo "4" ;;
+			menu_idx=1
+			daily;;
+		2) echo "2" 
+			menu_idx=2;;
+		3) echo "3" 
+			menu_idx=3;;
+		4) echo "4" 
+			menu_idx=4;;
 		*) echo "유효하지 않은 숫자!" ;;
 	esac
 done
 
 R --quiet --no-save << EOF
 #library(sqldf)
+
+x <- switch($menu_idx, "Daily", "Weekly", "Monthly", "Yearly")
+print(x)
+
 #mem <- read.csv('mem_statistics.csv')
 #sqldf('select * from mem')
 
