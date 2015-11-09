@@ -75,9 +75,13 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	y_cached <- y_sql_daily_graph[,3]
 	y_cached
 
-
-	
-
+	png(filename="test.png", width=897, height=514, unit="px")
+	plot(y_memfree, type="o", col="red", ylab="")
+	par(new=T)
+	plot(y_active, type="o", col="blue", ylab="", axes=FALSE)
+	par(new=T)
+	plot(y_cached, type="o", col="green", ylab="", axes=FALSE)
+	grid(col="blue")
 
 }
 
