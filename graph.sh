@@ -76,11 +76,11 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	y_cached
 
 	png(filename="test.png", width=897, height=514, unit="px")
-	plot(y_memfree, type="o", col="red", ylab="")
+	plot(y_memfree, type="o", col="red", ylab="", ylim=c(0, 6000))
 	par(new=T)
-	plot(y_active, type="o", col="blue", ylab="", axes=FALSE)
+	plot(y_active, type="o", col="blue", ylab="", ylim=c(0, 6000))
 	par(new=T)
-	plot(y_cached, type="o", col="green", ylab="", axes=FALSE)
+	plot(y_cached, type="o", col="green", ylab="", ylim=c(0, 6000))
 	grid(col="blue")
 
 }
