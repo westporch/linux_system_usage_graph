@@ -77,18 +77,19 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	par(cex.axis=2, cex.lab=2)
 	plot(y_memfree, type="o", col="red", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] Memfree", xlab="Count", ylab="Usage (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
+	title(main="[Memory] Memfree - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 
 	par(cex.axis=2, cex.lab=2)
 	plot(y_active, type="o", col="green", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] Active", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	title(main="[Memory] Active - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 	#par(cex.axis=2, cex.lab=2)
 
 	par(cex.axis=2, cex.lab=2)
 	plot(y_cached, type="o", col="blue", xlab="", ylab="")
-	grid(col="blue")
-	title(main="[Memory] Cached", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	grid(col="lightblue")
+	title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+
 	#par(cex.axis=2, cex.lab=2)
 
 	#axis(1, at=seq(0, 40, by=1))
