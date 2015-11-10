@@ -67,28 +67,29 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
 	y_sql_daily_graph	<- sqldf(sql_daily_graph)
 	y_memfree <- y_sql_daily_graph[,1]
-	
 	y_active <- y_sql_daily_graph[,2]
-	y_active
-
 	y_cached <- y_sql_daily_graph[,3]
-	y_cached
 
 	png(filename="test.png", width=595, height=842, unit="px")
 
 	par(mfrow=c(3,1))
+
+	par(cex.axis=2, cex.lab=2)
 	plot(y_memfree, type="o", col="red", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] memfree", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+	title(main="[Memory] Memfree", xlab="Count", ylab="Usage (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 
-
+	par(cex.axis=2, cex.lab=2)
 	plot(y_active, type="o", col="green", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] Active", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+	title(main="[Memory] Active", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	#par(cex.axis=2, cex.lab=2)
 
+	par(cex.axis=2, cex.lab=2)
 	plot(y_cached, type="o", col="blue", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] Cached", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+	title(main="[Memory] Cached", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	#par(cex.axis=2, cex.lab=2)
 
 	#axis(1, at=seq(0, 40, by=1))
 	#axis(2, las=0, col.axis="red", ylim=c(0, 6000))
