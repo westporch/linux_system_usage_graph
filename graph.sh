@@ -10,7 +10,7 @@ function daily()
      --inputbox "메모리 사용량 그래프를 그릴 날짜를 입력해주세요. (YYYY MM DD)" 10 0 2> $TMP_FILE
 	retval=$?
 	input=`cat $TMP_FILE` 			# $$는 현재 프로세스의 PID를 의미함
-#	rm -f /tmp/inputbox.tmp.$$
+	rm -f /tmp/inputbox.tmp.$$
 
 	case $retval in
     	0) echo "다음 날짜의 메모리 사용량을 그래프로 그립니다. '$input'"
@@ -67,7 +67,6 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
 	y_sql_daily_graph	<- sqldf(sql_daily_graph)
 	y_memfree <- y_sql_daily_graph[,1]
-	y_memfree
 	
 	y_active <- y_sql_daily_graph[,2]
 	y_active
@@ -75,12 +74,31 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	y_cached <- y_sql_daily_graph[,3]
 	y_cached
 
-	png(filename="test.png", width=897, height=514, unit="px")
-	plot(y_memfree, type="o", col="red", ylab="", ylim=c(0, 6000))
-	par(new=T)
-	plot(y_active, type="o", col="blue", ylab="", ylim=c(0, 6000))
-	par(new=T)
-	plot(y_cached, type="o", col="green", ylab="", ylim=c(0, 6000))
+	png(filename="test.png", width=595, height=842, unit="px")
+
+	par(mfrow=c(3,1))
+	plot(y_memfree, type="o", col="red", xlab="", ylab="")
+	grid(col="blue")
+	title(main="[Memory] memfree", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+
+
+	plot(y_active, type="o", col="green", xlab="", ylab="")
+	grid(col="blue")
+	title(main="[Memory] Active", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+
+	plot(y_cached, type="o", col="blue", xlab="", ylab="")
+	grid(col="blue")
+	title(main="[Memory] Cached", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.axis=1.5, cex.sub=1.5, cex.main=2, cex.lab=1.5)
+
+	#axis(1, at=seq(0, 40, by=1))
+	#axis(2, las=0, col.axis="red", ylim=c(0, 6000))
+	#axis(2, at=seq(0, 600, by=10))
+
+	#par(new=T)
+	#plot(y_active, type="o", col="blue", ylim=c(0, 6000))
+	#axis(4, col.axis="blue", ylim=c(0, 6000))
+	#par(new=T)
+	#plot(y_cached, type="o", col="green", ylab="", ylim=c(0, 6000))
 	grid(col="blue")
 
 }
