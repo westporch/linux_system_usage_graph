@@ -87,7 +87,7 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 
 	par(cex.axis=2, cex.lab=2)
 	plot(y_cached, type="o", col="blue", xlab="", ylab="")
-	grid(col="lightblue")
+	grid(col="blue")
 	title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 
 	#par(cex.axis=2, cex.lab=2)
@@ -101,7 +101,7 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	#axis(4, col.axis="blue", ylim=c(0, 6000))
 	#par(new=T)
 	#plot(y_cached, type="o", col="green", ylab="", ylim=c(0, 6000))
-	grid(col="blue")
+	#grid(col="blue")
 
 }
 
