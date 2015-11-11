@@ -69,9 +69,6 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 
 	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
 	y_sql_daily_graph	<- sqldf(sql_daily_graph)
-	#y_memfree <- y_sql_daily_graph[,1]
-	#y_active <- y_sql_daily_graph[,2]
-	#y_cached <- y_sql_daily_graph[,3]
 
 	mem_graph_type = c("Memfree", "Active", "Cached")
 	graph_line_color = c("red", "green", "blue")
@@ -84,7 +81,10 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	for(idx in 1:3)
 	{
 		par(cex.axis=2, cex.lab=1.5)
-		# plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
+		' : plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
+		y_memfree <- y_sql_daily_graph[,1]
+    	y_active <- y_sql_daily_graph[,2]
+    	y_cached <- y_sql_daily_graph[,3] '
 		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx+1), xlab="", ylab="")
  		grid(col="blue")
 		title(paste("[Memory]", main=mem_graph_type[idx], "- by a day", "(", $YEAR, ".",  $MONTH, ".", $DAY, ")"), xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
