@@ -89,10 +89,11 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	#그래프1 ~ 그래프3을 그리는 반복문 테스트
 	for(idx in 1:3)
 	{
-		par(cex.axis=2, cex.lab=2)    
-		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx), xlab="", ylab="")
+		par(cex.axis=2, cex.lab=2)
+		# plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
+		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx+1), xlab="", ylab="")
     	grid(col="blue")
-    	title(main=mem_graph_type[idx], xlab="Count", ylab=mem_graph_type[idx], cex=2, font.main=2, cex.sub=1.5, cex.main=2)
+    	title(main=mem_graph_type[idx], xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 
 	}
 
