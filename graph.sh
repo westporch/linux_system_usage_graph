@@ -80,7 +80,8 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	mem_graph_type = c("Memfree", "Active", "Cached")
 	graph_line_color = c("red", "green", "blue")
 
-	png(filename="test.png", width=595, height=842, unit="px")
+	#png(filename="test.png", width=595, height=842, unit="px")
+	png(filename=paste("Daily_graph", "($YEAR$MONTH$DAY).png"), width=595, height=842, unit="px")
 
 	par(mfrow=c(3,1))
 
