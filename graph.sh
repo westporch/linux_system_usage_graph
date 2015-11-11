@@ -92,9 +92,8 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 		par(cex.axis=2, cex.lab=2)
 		# plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
 		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx+1), xlab="", ylab="")
-    	grid(col="blue")
-    	title(main=mem_graph_type[idx], xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
-
+ 		grid(col="blue")
+		title(paste(main=mem_graph_type[idx], "(", $YEAR, ".",  $MONTH, ".", $DAY, ")"), xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 	}
 
 	for(i in 1:10)
