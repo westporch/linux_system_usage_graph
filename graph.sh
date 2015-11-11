@@ -71,22 +71,20 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	print ($DAY)
 	mem <- read.csv('mem_statistics.csv')
 
-	#sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
 	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
 	y_sql_daily_graph	<- sqldf(sql_daily_graph)
-	y_memfree <- y_sql_daily_graph[,1]
-	y_active <- y_sql_daily_graph[,2]
-	y_cached <- y_sql_daily_graph[,3]
+	#y_memfree <- y_sql_daily_graph[,1]
+	#y_active <- y_sql_daily_graph[,2]
+	#y_cached <- y_sql_daily_graph[,3]
 
 	mem_graph_type = c("Memfree", "Active", "Cached")
-	y_axis_mem = c("y_memfree", "y_active", "y_cached")
 	graph_line_color = c("red", "green", "blue")
 
 	png(filename="test.png", width=595, height=842, unit="px")
 
 	par(mfrow=c(3,1))
 
-	#그래프1 ~ 그래프3을 그리는 반복문 테스트
+	#그래프1 ~ 그래프3을 그리는 반복문
 	for(idx in 1:3)
 	{
 		par(cex.axis=2, cex.lab=2)
@@ -95,33 +93,7 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
  		grid(col="blue")
 		title(paste("[Memory]", main=mem_graph_type[idx], "- by a day", "(", $YEAR, ".",  $MONTH, ".", $DAY, ")"), xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 	}
-
-	for(i in 1:10)
-	{
-		print("number =", i)
-	}
-
-	# 그래프1~ 그래프3은 for문으로 변경 불가능.
-	# 그래프1 (memfree) 
-	#par(cex.axis=2, cex.lab=2)
-	#plot(y_memfree, type="o", col="red", xlab="", ylab="")
-	#grid(col="blue")
-	#title(main="[Memory] ${mem_graph_type[0]} - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="${mem_graph_type[0]} (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
-
-	# 그래프2 (active)
-	#par(cex.axis=2, cex.lab=2)
-	#plot(y_active, type="o", col="green", xlab="", ylab="")
-	#grid(col="blue")
-	#title(main="[Memory] Active - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
-
-	# 그래프3 (cached)
-	#par(cex.axis=2, cex.lab=2)
-	#plot(y_cached, type="o", col="blue", xlab="", ylab="")
-	#grid(col="blue")
-	#title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 }
-
-print ("test999")
 
 #if ($STATUS==0)
 #{
@@ -133,7 +105,5 @@ print ("test999")
 #}
 
 switch($menu_idx, draw_daily_graph(), "Weekly", "Monthly", "Yearly")
-
-print("$STR")
 
 EOF
