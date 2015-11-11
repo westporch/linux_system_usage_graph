@@ -7,16 +7,16 @@ function daily()
 	TMP_FILE=/tmp/input.box.tmp.$$
 
 	dialog --title "Daily graph" \
-     --inputbox "메모리 사용량 그래프를 그릴 날짜를 입력해주세요. (YYYY MM DD)" 10 0 2> $TMP_FILE
+     --inputbox "메모리 사용량 그래프를 그릴 날짜를 입력해주세요. (YYYYMMDD)" 10 0 2> $TMP_FILE
 	retval=$?
 	input=`cat $TMP_FILE` 			# $$는 현재 프로세스의 PID를 의미함
 	rm -f /tmp/inputbox.tmp.$$
 
 	case $retval in
     	0) echo "다음 날짜의 메모리 사용량을 그래프로 그립니다. '$input'"
-			YEAR=`cat $TMP_FILE | awk -F " " '{print $1}'`
-			MONTH=`cat $TMP_FILE | awk -F " " '{print $2}'`
-			DAY=`cat $TMP_FILE | awk -F " " '{print $3}'`
+			YEAR=`cat $TMP_FILE | cut -c 1-4`
+			MONTH=`cat $TMP_FILE | cut -c 5-6`
+			DAY=`cat $TMP_FILE | cut -c 7-8` 
 
 			echo "$YEAR $MONTH $DAY";;
 
