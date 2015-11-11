@@ -2,7 +2,7 @@
 
 #Hyeongwan Seo
 
-mem_graph_type=("Memfree" "Active" "Cached")
+#graph_line_color=("red" "green" "blue")
 
 function daily()
 {
@@ -78,31 +78,47 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	y_active <- y_sql_daily_graph[,2]
 	y_cached <- y_sql_daily_graph[,3]
 
-	TYPE <- c("Memfree", "Active", "Cached")
+	mem_graph_type = c("Memfree", "Active", "Cached")
+	y_axis_mem = c("y_memfree", "y_active", "y_cached")
+	graph_line_color = c("red", "green", "blue")
 
 	png(filename="test.png", width=595, height=842, unit="px")
 
 	par(mfrow=c(3,1))
 
+	#그래프1 ~ 그래프3을 그리는 반복문 테스트
+	for(idx in 1:3)
+	{
+		par(cex.axis=2, cex.lab=2)    
+		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx), xlab="", ylab="")
+    	grid(col="blue")
+    	title(main=mem_graph_type[idx], xlab="Count", ylab=mem_graph_type[idx], cex=2, font.main=2, cex.sub=1.5, cex.main=2)
+
+	}
+
+	for(i in 1:10)
+	{
+		print("number =", i)
+	}
+
 	# 그래프1~ 그래프3은 for문으로 변경 불가능.
 	# 그래프1 (memfree) 
-	par(cex.axis=2, cex.lab=2)
-	plot(y_memfree, type="o", col="red", xlab="", ylab="")
-	grid(col="blue")
-	title(main="[Memory] ${mem_graph_type[0]} - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="${mem_graph_type[0]} (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
-	legend(500, 400, c("test"), col=c("red"))
+	#par(cex.axis=2, cex.lab=2)
+	#plot(y_memfree, type="o", col="red", xlab="", ylab="")
+	#grid(col="blue")
+	#title(main="[Memory] ${mem_graph_type[0]} - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="${mem_graph_type[0]} (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 
 	# 그래프2 (active)
-	par(cex.axis=2, cex.lab=2)
-	plot(y_active, type="o", col="green", xlab="", ylab="")
-	grid(col="blue")
-	title(main="[Memory] Active - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	#par(cex.axis=2, cex.lab=2)
+	#plot(y_active, type="o", col="green", xlab="", ylab="")
+	#grid(col="blue")
+	#title(main="[Memory] Active - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 
 	# 그래프3 (cached)
-	par(cex.axis=2, cex.lab=2)
-	plot(y_cached, type="o", col="blue", xlab="", ylab="")
-	grid(col="blue")
-	title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
+	#par(cex.axis=2, cex.lab=2)
+	#plot(y_cached, type="o", col="blue", xlab="", ylab="")
+	#grid(col="blue")
+	#title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 }
 
 print ("test999")
