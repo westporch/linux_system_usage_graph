@@ -2,6 +2,8 @@
 
 #Hyeongwan Seo
 
+mem_graph_type=("Memfree" "Active" "Cached")
+
 function daily()
 {
 	TMP_FILE=/tmp/input.box.tmp.$$
@@ -18,9 +20,13 @@ function daily()
 			MONTH=`cat $TMP_FILE | cut -c 5-6`
 			DAY=`cat $TMP_FILE | cut -c 7-8` 
 
+			STATUS=0
+
 			echo "$YEAR $MONTH $DAY";;
 
     	1) echo "Cancel pressed."
+	
+		   STATUS=1
            exit;;
 	esac
 }
@@ -50,6 +56,8 @@ do
 	esac
 done
 
+STR=test999
+
 # R 스크립트 시작
 
 R --quiet --no-save << EOF
@@ -70,6 +78,8 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	y_active <- y_sql_daily_graph[,2]
 	y_cached <- y_sql_daily_graph[,3]
 
+	TYPE <- c("Memfree", "Active", "Cached")
+
 	png(filename="test.png", width=595, height=842, unit="px")
 
 	par(mfrow=c(3,1))
@@ -79,7 +89,7 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	par(cex.axis=2, cex.lab=2)
 	plot(y_memfree, type="o", col="red", xlab="", ylab="")
 	grid(col="blue")
-	title(main="[Memory] Memfree - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
+	title(main="[Memory] ${mem_graph_type[0]} - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="${mem_graph_type[0]} (MB)", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
 	legend(500, 400, c("test"), col=c("red"))
 
 	# 그래프2 (active)
@@ -95,13 +105,19 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	title(main="[Memory] Cached - by a day ($YEAR.$MONTH.$DAY)", xlab="Count", ylab="Usage (MB)", font.main=2, cex=2, cex.sub=1.5, cex.main=2)
 }
 
+print ("test999")
+
+#if ($STATUS==0)
+#{
+#	switch($menu_idx, draw_daily_graph(), "Weekly", "Monthly", "Yearly")
+#}
+#else
+#{
+#	q()
+#}
+
 switch($menu_idx, draw_daily_graph(), "Weekly", "Monthly", "Yearly")
 
-#x <- switch($menu_idx, "daily_graph()", "Weekly", "Monthly", "Yearly")
-#print(x)
-
-#mem <- read.csv('mem_statistics.csv')
-#sqldf('select * from mem')
-
+print("$STR")
 
 EOF
