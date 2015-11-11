@@ -73,7 +73,7 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	mem_graph_type = c("Memfree", "Active", "Cached")
 	graph_line_color = c("red", "green", "blue")
 
-	png(filename=paste("Daily_graph", "($YEAR$MONTH$DAY).png"), width=595, height=842, unit="px")
+	png(filename=paste("Daily_graph", "($YEAR$MONTH$DAY).png"), width=595, height=842, unit="px") # A4 용지 크기로 이미지 파일을 생성함
 
 	par(mfrow=c(3,1)) # 그래프 3개를 1열로 배치함
 
@@ -83,8 +83,8 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 		par(cex.axis=2, cex.lab=1.5)
 		' : plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
 		y_memfree <- y_sql_daily_graph[,1]
-    	y_active <- y_sql_daily_graph[,2]
-    	y_cached <- y_sql_daily_graph[,3] '
+		y_active <- y_sql_daily_graph[,2]
+		y_cached <- y_sql_daily_graph[,3] '
 		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx+1), xlab="", ylab="")
  		grid(col="blue")
 		title(paste("[Memory]", main=mem_graph_type[idx], "- by a day", "(", $YEAR, ".",  $MONTH, ".", $DAY, ")"), xlab="Count", ylab="MB", cex=2, font.main=2, cex.sub=1.5, cex.main=2)
