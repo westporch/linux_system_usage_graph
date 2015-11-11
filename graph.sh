@@ -65,10 +65,6 @@ library(sqldf)
 
 draw_daily_graph <- function(YEAR, MONTH, DAY)
 {
-	print ("함수 내부입니다.")
-	print ($YEAR)
-	print ($MONTH)
-	print ($DAY)
 	mem <- read.csv('mem_statistics.csv')
 
 	sql_daily_graph <- sprintf("select MemFree, Active, Cached from mem where Year=%s and Month=%s and Day=%s", $YEAR, $MONTH, $DAY)
@@ -80,15 +76,14 @@ draw_daily_graph <- function(YEAR, MONTH, DAY)
 	mem_graph_type = c("Memfree", "Active", "Cached")
 	graph_line_color = c("red", "green", "blue")
 
-	#png(filename="test.png", width=595, height=842, unit="px")
 	png(filename=paste("Daily_graph", "($YEAR$MONTH$DAY).png"), width=595, height=842, unit="px")
 
-	par(mfrow=c(3,1))
+	par(mfrow=c(3,1)) # 그래프 3개를 1열로 배치함
 
 	#그래프1 ~ 그래프3을 그리는 반복문
 	for(idx in 1:3)
 	{
-		par(cex.axis=2, cex.lab=2)
+		par(cex.axis=2, cex.lab=1.5)
 		# plot 함수의 col값 0: Black, 1: Red, 2: Green, 3: Blue    
 		plot(y_sql_daily_graph[,idx], type="o", col=rep(idx+1), xlab="", ylab="")
  		grid(col="blue")
