@@ -14,26 +14,26 @@ plot1 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="MemFree (MB)") + 
 			  ggtitle("[Memory] Memfree - by a day") +
-			  theme(plot.title = element_text(color="#666666", face="bold", size=16, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=14)) 
+			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
 #그래프2
 plot2 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  geom_point(color="black") + 
-			  geom_line(colour="red") + 
+			  geom_line(colour="green") + 
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="MemFree (MB)") + 
 			  ggtitle("[Memory] Memfree - by a day") +
-			  theme(plot.title = element_text(color="#666666", face="bold", size=16, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=14)) 
+			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
 #그래프3
 plot3 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  geom_point(color="black") + 
-			  geom_line(colour="red") + 
+			  geom_line(colour="blue") + 
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="MemFree (MB)") + 
 			  ggtitle("[Memory] Memfree - by a day") +
-			  theme(plot.title = element_text(color="#666666", face="bold", size=16, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=14)) 
+			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
 
-png(filename="test.png", width=595, height=842, unit="px")
+png(filename="test.png", width=595, height=842, unit="px", res=150)
 grid.arrange(plot1, plot2, plot3, ncol=1, nrow=3)
