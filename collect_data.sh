@@ -43,14 +43,14 @@ function print_data()
 	for ((;;))
 	do
 		get_data
-		echo "$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
-		sleep 2s	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
+		echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
+		sleep 5s	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
 	done
 }
 
 function init_document()
 {
-	echo "Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
+	echo "Timestamp,Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
 }
 
 # 1개의 프로세스만 메모리 사용량을 수집하도록 함.
@@ -71,14 +71,14 @@ function process_check()
 
 R_check
 process_check
-#init_document  # R에서 추가 t여부 검토
+init_document  # R에서 추가 t여부 검토
 
 #echo "collect_data.sh 프로세스 개수: $PROCESS_NUM"
 #echo "collect_data.sh 프로세스 번호: `pgrep collect_data.sh`"
 #echo "`ps aux | grep collect_data.sh`"
 
-#if [ "$1" == "stop" ];then
-#	pkill collect_data.sh	# 데이터 수집을 중지함
-#else
+if [ "$1" == "stop" ];then
+	pkill collect_data.sh	# 데이터 수집을 중지함
+else
 	print_data
-#fi
+fi
