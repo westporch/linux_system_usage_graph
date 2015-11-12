@@ -7,7 +7,7 @@ dataset <- read.csv(file="mem_statistics.csv", as.is=TRUE)
 
 dataset$Time <- strptime(format="%d-%m-%Y %H:%M:%S %z", dataset$Timestamp, tz="GMT")
 
-#그래프1
+#그래프1 (MemFree)
 plot1 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  geom_point(color="black") + 
 			  geom_line(colour="red") + 
@@ -16,8 +16,8 @@ plot1 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  ggtitle("[Memory] Memfree - by a day") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
   			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
-#그래프2
-plot2 <- ggplot( dataset, aes( Time, MemFree ) ) +
+#그래프2 (Active)
+plot2 <- ggplot( dataset, aes( Time, Active ) ) +
 			  geom_point(color="black") + 
 			  geom_line(colour="green") + 
 			  scale_x_datetime() + 
@@ -25,8 +25,8 @@ plot2 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  ggtitle("[Memory] Memfree - by a day") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
   			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
-#그래프3
-plot3 <- ggplot( dataset, aes( Time, MemFree ) ) +
+#그래프3 (Cached)
+plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  geom_point(color="black") + 
 			  geom_line(colour="blue") + 
 			  scale_x_datetime() + 
