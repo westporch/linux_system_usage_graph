@@ -39,7 +39,7 @@ do
 	case $choice in
 		1)	#daily;;
 			Rscript memory_graph.R
-			echo "메모리 사용량 그래프를 완성했습니다.";;
+			echo -e "\e[1;32m메모리 사용량 그래프(Memory_usage_graph.png)를 완성했습니다.\e[0m";;
 		2) echo "2";;
 		3) echo "3";; 
 		4) echo "4";; 
