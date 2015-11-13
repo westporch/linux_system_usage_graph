@@ -1,5 +1,7 @@
 #Hyeongwan Seo
 
+draw_a_day_graph <- function()                                                                       
+{
 library(gridExtra) # 라이브러리를 로드하지 못하면 install.packages("gridExtra")를 해야함.
 library(ggplot2) #라이브러리를 로드하지 못하면 install.packages("ggplot2")를 해야함.
 
@@ -13,7 +15,7 @@ plot1 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  geom_line(colour="#6ED746") + 
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="MemFree (MB)") + 
-			  ggtitle("[Memory] Memfree - by a day") +
+			  ggtitle("[Memory] Memfree") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
   			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
 			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='F1')) +
@@ -26,7 +28,7 @@ plot2 <- ggplot( dataset, aes( Time, Active ) ) +
 			  geom_line(colour="#FF9999") + 
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="Active (MB)") + 
-			  ggtitle("[Memory] Active - by a day") +
+			  ggtitle("[Memory] Active") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
   			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
 			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='F1')) +
@@ -39,7 +41,7 @@ plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  geom_line(colour="steelblue2") + 
 			  scale_x_datetime() + 
 			  labs(x="Time (HH:MM)", y="Cached (MB)") + 
-			  ggtitle("[Memory] Cached - by a day") +
+			  ggtitle("[Memory] Cached") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
   			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
 			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='F1')) +
@@ -51,3 +53,6 @@ png(filename="test.png", width=842, height=794, unit="px", res=150)
 grid.arrange(plot1, plot2, plot3, ncol=1, nrow=3)
 
 #png(filename="test.png", width=595, height=842, unit="px", res=150)
+}
+
+draw_a_day_graph()
