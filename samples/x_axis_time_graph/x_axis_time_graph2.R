@@ -47,5 +47,7 @@ plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  theme(panel.grid.minor = element_line(colour = "#969696", size=0.4, linetype='dotted')) +
               theme(panel.border = element_rect(colour = "#aaaaaa", fill=NA, size=1))
 
-png(filename="test.png", width=595, height=842, unit="px", res=150)
+#png(filename="test.png", width=595, height=842, unit="px", res=150)
+png(filename="test.png", width=842, height=794, unit="px", res=150)
+#grid.arrange(plot1, plot2, ncol=1, nrow=2)
 grid.arrange(plot1, plot2, plot3, ncol=1, nrow=3)
