@@ -1,7 +1,5 @@
 #Hyeongwan Seo
 
-draw_a_day_graph <- function()                                                                       
-{
 library(gridExtra) # 라이브러리를 로드하지 못하면 install.packages("gridExtra")를 해야함.
 library(ggplot2) #라이브러리를 로드하지 못하면 install.packages("ggplot2")를 해야함.
 
@@ -48,11 +46,5 @@ plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  theme(panel.grid.minor = element_line(colour = "#969696", size=0.4, linetype='dotted')) +
               theme(panel.border = element_rect(colour = "#aaaaaa", fill=NA, size=1))
 
-#png(filename="test.png", width=842, height=794, unit="px", res=170)
 png(filename="test.png", width=842, height=794, unit="px", res=150)
 grid.arrange(plot1, plot2, plot3, ncol=1, nrow=3)
-
-#png(filename="test.png", width=595, height=842, unit="px", res=150)
-}
-
-draw_a_day_graph()
