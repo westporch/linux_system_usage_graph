@@ -15,7 +15,10 @@ plot1 <- ggplot( dataset, aes( Time, MemFree ) ) +
 			  labs(x="Time (HH:MM)", y="MemFree (MB)") + 
 			  ggtitle("[Memory] Memfree - by a day") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
+			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3)) +
+			  theme(panel.grid.minor = element_line(colour = "black", size=0.05))
+
 #그래프2 (Active)
 plot2 <- ggplot( dataset, aes( Time, Active ) ) +
 			  geom_point(color="#FF9999") + 
@@ -24,7 +27,10 @@ plot2 <- ggplot( dataset, aes( Time, Active ) ) +
 			  labs(x="Time (HH:MM)", y="Cached (MB)") + 
 			  ggtitle("[Memory] Active - by a day") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
+			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3)) +
+			  theme(panel.grid.minor = element_line(colour = "black", size=0.05))
+
 #그래프3 (Cached)
 plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  geom_point(color="steelblue2") + 
@@ -33,7 +39,9 @@ plot3 <- ggplot( dataset, aes( Time, Cached ) ) +
 			  labs(x="Time (HH:MM)", y="Active (MB)") + 
 			  ggtitle("[Memory] Cached - by a day") +
 			  theme(plot.title = element_text(color="#666666", face="bold", size=12, hjust=0.5)) +
-  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) 
+  			  theme(axis.title = element_text(color="#666666", face="bold", size=8, hjust=1)) +
+			  theme(panel.grid.major = element_line(colour = "#969696", size=0.3)) +
+			  theme(panel.grid.minor = element_line(colour = "black", size=0.05))
 
 png(filename="test.png", width=595, height=842, unit="px", res=150)
 grid.arrange(plot1, plot2, plot3, ncol=1, nrow=3)
