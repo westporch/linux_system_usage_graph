@@ -44,7 +44,7 @@ function print_data()
 	do
 		get_data
 		echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
-		sleep 2s	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
+		sleep 5m	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
 	done
 }
 
