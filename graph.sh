@@ -38,7 +38,8 @@ for choice in $choices
 do
 	case $choice in
 		1)	#daily;;
-			Rscript memory_graph.R
+			#Rscript memory_graph.R
+			Rscript United_memory_graph.R
 			echo -e "\e[1;32m메모리 사용량 그래프(Memory_usage_graph.png)를 완성했습니다.\e[0m";;
 		2) echo "2";;
 		3) echo "3";; 
