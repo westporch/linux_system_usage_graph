@@ -26,5 +26,5 @@ plot <- ggplot(dataset, aes(Time))  +
             geom_line(colour="steelblue2", aes(Time, y = y_Cached)) +
 			ylab("MB") 
 
-png(filename="Memory_usage_graph.png", width=1021, height=1279, unit="px", res=180)
+png(filename="Memory_usage_graph.png", width=1021, height=1279, unit="px", res=150)
 grid.arrange(plot, ncol=1, nrow=1)
