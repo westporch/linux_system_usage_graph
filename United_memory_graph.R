@@ -24,8 +24,7 @@ plot <- ggplot(dataset, aes(Time))  +
             geom_line(colour="#6ED746", aes(Time, y = y_Memfree)) +
             geom_line(colour="#FF9999", aes(Time, y = y_Active)) +   
             geom_line(colour="steelblue2", aes(Time, y = y_Cached)) +
-			ylab("MB") +
-            scale_colour_manual("test", values=c("Memfree", "#6ED746"))   #작동 안함
+			ylab("MB") 
 
 png(filename="Memory_usage_graph.png", width=1021, height=1279, unit="px", res=180)
 grid.arrange(plot, ncol=1, nrow=1)
