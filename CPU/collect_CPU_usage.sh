@@ -2,6 +2,7 @@
 #Hyeongwan Seo
 
 CPU_STATISTICS=cpu_statistics.csv
+SAR_RESULT=sar_result.txt
 
 #시스템에 R이 설치되었는지 확인함.
 function R_check()
@@ -41,8 +42,17 @@ function get_data()
     SECOND=`date +%S`
 
 	#CPU 정보를 수집함
-    CPU_USAGE=`sar -u 1 1 | grep Average | awk '{print $3}'` #300은 5분, 5는 5회를 의미함
-    CPU_IDLE=`sar -u 1 1 | grep Average | awk '{print $8}'`
+	sar -u 1 1 | grep Average > $SAR_RESULT
+
+	#for문으로 개선해야 함
+    USER=`cat $SAR_RESULT | awk '{print $3}'` 
+	NICE=`cat $SAR_RESULT | awk '{print $4}'`
+	SYSTEM=`cat $SAR_RESULT | awk '{print $5}'`
+	IOWAIT=`cat $SAR_RESULT | awk '{print $6}'`
+	STEAL=`cat $SAR_RESULT | awk '{print $7}'`
+    IDLE=`cat $SAR_RESULT | awk '{print $8}'`
+
+	rm -rf $SAR_RESULT
 }
 
 function print_data()
@@ -50,8 +60,8 @@ function print_data()
     for ((;;))
     do
         get_data
-        echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$CPU_USAGE,$CPU_IDLE" >> $CPU_STATISTICS
-		sleep 1m
+        echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$USER,$NICE,$SYSTEM,$IOWAIT,$STEAL,$IDLE" >> $CPU_STATISTICS
+		sleep 2s
     done
 }
 
@@ -60,7 +70,7 @@ function init_document()
     if [ -e $CPU_STATISTICS ]; then
         :       #NOP (csv 파일이 존재하면 init_document 함수를 실행하지 않음)
     else
-        echo "Timestamp,Usage,Idle" > $CPU_STATISTICS
+        echo "Timestamp,User,Nice,System,Iowait,Steal,Idle" > $CPU_STATISTICS
     fi
 }
 
