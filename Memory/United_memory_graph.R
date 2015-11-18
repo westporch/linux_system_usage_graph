@@ -3,7 +3,7 @@
 library(gridExtra) # 라이브러리를 로드하지 못하면 install.packages("gridExtra")를 해야함.
 library(ggplot2) #라이브러리를 로드하지 못하면 install.packages("ggplot2")를 해야함.
 
-dataset <- read.csv(file="mem_statistics.csv", as.is=TRUE)
+dataset <- read.csv(file="Memory/mem_statistics.csv", as.is=TRUE)
 
 dataset$Time <- strptime(format="%d-%m-%Y %H:%M:%S %z", dataset$Timestamp, tz="GMT")
 
