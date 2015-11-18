@@ -51,7 +51,7 @@ function print_data()
     do
         get_data
         echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$CPU_USAGE,$CPU_IDLE" >> $CPU_STATISTICS
-		sleep 10s
+		sleep 1m
     done
 }
 
