@@ -8,9 +8,9 @@ dataset <- read.csv(file="mem_statistics.csv", as.is=TRUE)
 dataset$Time <- strptime(format="%d-%m-%Y %H:%M:%S %z", dataset$Timestamp, tz="GMT")
 
 # y축의 max 값을 계산한다                                  
-y_Memfree <- dataset[,9]
-y_Active <- dataset[,10]
-y_Cached <- dataset[,11]
+y_Memfree <- dataset[,2]
+y_Active <- dataset[,3]
+y_Cached <- dataset[,4]
 y_max <- max(y_Memfree, y_Active, y_Cached)
 
 dataset$Time <- strptime(format="%d-%m-%Y %H:%M:%S %z", dataset$Timestamp, tz="GMT")
