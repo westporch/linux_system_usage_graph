@@ -19,7 +19,7 @@ plot <- ggplot(dataset, aes(Time))  +
             scale_y_continuous(breaks = seq(0, y_max, by = 100)) +
             ggtitle("<Memory usage statistics>\nGreen(MemFree), Red(Active), Blue(Cached)") +
             theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='solid')) +
-            theme(panel.grid.minor = element_line(colour = "#969696", size=0.4, linetype='F1')) +
+            theme(panel.grid.minor = element_line(colour = "white", size=0.4, linetype='F1')) +
             theme(panel.border = element_rect(colour = "#aaaaaa", fill=NA, size=1)) +
             geom_line(colour="#6ED746", aes(Time, y = y_Memfree)) +
             geom_line(colour="#FF9999", aes(Time, y = y_Active)) +   
