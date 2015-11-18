@@ -21,9 +21,9 @@ plot <- ggplot(dataset, aes(Time))  +
             theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='solid')) +
             theme(panel.grid.minor = element_line(colour = "white", size=0.4, linetype='F1')) +
             theme(panel.border = element_rect(colour = "#aaaaaa", fill=NA, size=1)) +
-            geom_line(colour="#6ED746", aes(Time, y = y_Memfree)) +
-            geom_line(colour="#FF9999", aes(Time, y = y_Active)) +   
-            geom_line(colour="steelblue2", aes(Time, y = y_Cached)) +
+            geom_line(colour="#6ED746", size=1, aes(Time, y = y_Memfree)) +
+            geom_line(colour="#FF9999", size=1, aes(Time, y = y_Active)) +   
+            geom_line(colour="steelblue2", size=1, aes(Time, y = y_Cached)) +
 			ylab("MB") 
 
 png(filename="Memory_usage_graph.png", width=1021, height=1279, unit="px", res=150)
