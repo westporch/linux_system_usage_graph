@@ -53,7 +53,7 @@ function init_document()
 	if [ -e $MEM_STATISTICS ]; then
 		:		#NOP (csv 파일이 존재하면 init_document 함수를 실행하지 않음)
 	else
-		echo "Timestamp,Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
+		echo "Timestamp,MemFree,Active,Cached" > $MEM_STATISTICS
 	fi
 }
 
