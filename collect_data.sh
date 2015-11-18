@@ -43,7 +43,7 @@ function print_data()
 	for ((;;))
 	do
 		get_data
-		echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$WEEK,$YEAR,$MONTH,$DAY,$HOUR,$MINUTE,$SECOND,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
+		echo "$DAY-$MONTH-$YEAR $HOUR:$MINUTE:$SECOND +0009,$MemFree_mb,$Active_mb,$Cached_mb" >> $MEM_STATISTICS
 		sleep 5m	# 데이터 수집 주기 설정 ex) 30s -> 30초, 10m -> 10분, 1h -> 1시간
 	done
 }
@@ -51,7 +51,7 @@ function print_data()
 function init_document()
 {
 	if [ -e $MEM_STATISTICS ]; then
-		:		#NOP
+		:		#NOP (csv 파일이 존재하면 init_document 함수를 실행하지 않음)
 	else
 		echo "Timestamp,Week,Year,Month,Day,Hour,Minute,Second,MemFree,Active,Cached" > $MEM_STATISTICS
 	fi
@@ -75,7 +75,7 @@ function process_check()
 
 R_check
 process_check
-init_document  # csv 파일이 존재하면 init_document 함수를 실행하지 않도록 해야함
+init_document 
 
 #echo "collect_data.sh 프로세스 개수: $PROCESS_NUM"
 #echo "collect_data.sh 프로세스 번호: `pgrep collect_data.sh`"
