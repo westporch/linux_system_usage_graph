@@ -18,13 +18,13 @@ dataset$Time <- strptime(format="%d-%m-%Y %H:%M:%S %z", dataset$Timestamp, tz="G
 
 plot <- ggplot(dataset, aes(Time))  + 
             scale_y_continuous(breaks = seq(0, 100, by = 5)) +
-            ggtitle("<CPU usage statistics>\nGreen(Idle), Red(User)") +
+            ggtitle("<CPU usage statistics>\nGreen(Idle), Red(User), Blue(System)") +
             theme(panel.grid.major = element_line(colour = "#969696", size=0.3, linetype='solid')) +
             theme(panel.grid.minor = element_line(colour = "white", size=0.4, linetype='F1')) +
             theme(panel.border = element_rect(colour = "#aaaaaa", fill=NA, size=1)) +
             geom_line(colour="#6ED746", size=0.8, aes(Time, y = y_Idle)) + 
             geom_line(colour="#FF9999", size=0.6, aes(Time, y = y_User)) + 
-            #geom_line(colour="steelblue2", size=0.6, aes(Time, y = y_System)) + 
+            geom_line(colour="steelblue2", size=0.6, aes(Time, y = y_System)) + 
 			ylab("Percent (%)") 
 
 png(filename="CPU_usage_graph.png", width=1021, height=1279, unit="px", res=230)
